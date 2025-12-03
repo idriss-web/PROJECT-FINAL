@@ -59,6 +59,16 @@ public class ProductController {
         return "notAuthorized";
     }
 
+
+    @GetMapping("/admin/products")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String adminProducts(Model model) {
+        model.addAttribute("productList", productRepository.findAll());
+        return "products";
+    }
+
+
+
     @GetMapping("/login")
     public String login() {
         return "login";
