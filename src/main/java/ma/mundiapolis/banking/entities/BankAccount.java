@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Data @NoArgsConstructor @AllArgsConstructor
+@DiscriminatorColumn(name="TYPE",length = 4)
 public class BankAccount {
     @Id
     private String id;
