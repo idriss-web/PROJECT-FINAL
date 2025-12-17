@@ -1,7 +1,6 @@
 package ma.mundiapolis.banking.entities;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Data @NoArgsConstructor @AllArgsConstructor
 public class BankAccount {
     @Id
@@ -18,5 +19,7 @@ public class BankAccount {
     private AccountStatus status;
     @ManyToOne
     private Customer customer;
+
+    @OneToMany(mappedBy = "bankAccount" )
     private List<AccountOperation> accountOperations;
 }
