@@ -1,4 +1,4 @@
-package ma.mundiapolis.mundiapolisspringmvc;
+package ma.mundiapolis.banking;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
