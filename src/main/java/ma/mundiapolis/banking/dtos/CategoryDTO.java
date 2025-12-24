@@ -4,14 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.print.DocFlavor;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDTO {
+public class CategoryDTO {
     private String id;
     private String name;
-    private double price;
-    private CategoryDTO categoryDTO;
 }

@@ -1,6 +1,9 @@
 package ma.mundiapolis.banking.repositories;
 
-public interface AccountOperationRepository
-{
+import ma.mundiapolis.banking.entities.AccountOperation;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
+public interface AccountOperationRepository extends JpaRepository<AccountOperation, Long> {
 }
