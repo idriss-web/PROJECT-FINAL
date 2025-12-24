@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.mundiapolis.banking.enums.OperationType;
 
 import java.util.Date;
 
@@ -17,6 +18,7 @@ public class AccountOperation {
 private long id;
 private Date operationDate;
 private double amount;
+@Enumerated(EnumType.STRING)
 private OperationType type;
 @ManyToOne
 private BankAccount bankAccount;

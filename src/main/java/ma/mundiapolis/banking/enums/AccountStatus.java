@@ -1,4 +1,4 @@
-package ma.mundiapolis.banking.entities;
+package ma.mundiapolis.banking.enums;
 
 public enum AccountStatus {
     CREATED,
