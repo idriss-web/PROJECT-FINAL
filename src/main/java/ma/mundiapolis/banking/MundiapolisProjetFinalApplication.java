@@ -1,14 +1,12 @@
 package ma.mundiapolis.banking;
 
-import ma.mundiapolis.banking.entities.AccountOperation;
-import ma.mundiapolis.banking.entities.CurrentAccount;
-import ma.mundiapolis.banking.entities.Customer;
-import ma.mundiapolis.banking.entities.SavingAccount;
+import ma.mundiapolis.banking.entities.*;
 import ma.mundiapolis.banking.enums.AccountStatus;
 import ma.mundiapolis.banking.enums.OperationType;
 import ma.mundiapolis.banking.repositories.AccountOperationRepository;
 import ma.mundiapolis.banking.repositories.BankAccountRepository;
 import ma.mundiapolis.banking.repositories.CustomerRepository;
+import ma.mundiapolis.banking.services.BankService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +21,13 @@ public class MundiapolisProjetFinalApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MundiapolisProjetFinalApplication.class, args);
+    }
+
+    @Bean
+    CommandLineRunner commandLineRunner(BankService bankService) {
+        return args -> {
+            bankService.consulter();
+        };
     }
 
     @Bean
@@ -45,7 +50,7 @@ public class MundiapolisProjetFinalApplication {
                 currentAccount.setId(UUID.randomUUID().toString());
                 currentAccount.setBalance(Math.random() * 90000);
                 currentAccount.setCreatedAt(new Date());
-                currentAccount.setStatus(AccountsStatus.CREATED);
+                currentAccount.setStatus(AccountStatus.CREATED);
                 currentAccount.setCustomer(cust);
                 currentAccount.setOverDraft(9000);
                 bankAccountRepository.save(currentAccount);
@@ -54,14 +59,14 @@ public class MundiapolisProjetFinalApplication {
                 savingAccount.setId(UUID.randomUUID().toString());
                 savingAccount.setBalance(Math.random() * 90000);
                 savingAccount.setCreatedAt(new Date());
-                savingAccount.setStatus(AccountsStatus.CREATED);
+                savingAccount.setStatus(AccountStatus.CREATED);
                 savingAccount.setCustomer(cust);
                 savingAccount.setInterestRate(3.5);
                 bankAccountRepository.save(savingAccount);
             });
 
             bankAccountRepository.findAll().forEach(acc -> {
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 10; i++) {
                     AccountOperation accountOperation = new AccountOperation();
                     accountOperation.setOperationDate(new Date());
                     accountOperation.setAmount(Math.random() * 12000);
